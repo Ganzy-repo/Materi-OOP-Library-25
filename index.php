@@ -1,9 +1,9 @@
 <?php 
-require "./controller/HomeController.php";
-require "./controller/AuthController.php";
-require "./controller/BookController.php";
-require "./controller/BorrowController.php";
-require "./controller/MembershipController.php";
+require "./Controllers/HomeController.php";
+require "./Controllers/AuthController.php";
+require "./Controllers/BookController.php";
+require "./Controllers/BorrowController.php";
+require "./Controllers/MembershipController.php";
 
 $server = $_SERVER['REQUEST_URI'];
 

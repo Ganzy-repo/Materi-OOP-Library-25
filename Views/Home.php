@@ -1,6 +1,6 @@
 <?php
 $title = "Home";
-include "template/header.php" ?>
+include "Template/Header.php" ?>
 
 <div class="container mt-5 bg-warning p-5 text-center">
     <div class="row">
@@ -21,4 +21,4 @@ include "template/header.php" ?>
     </div>
 </div>
 
-<?php include "template/footer.php" ?>
+<?php include "Template/Footer.php" ?>

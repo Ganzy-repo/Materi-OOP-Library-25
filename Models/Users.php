@@ -2,13 +2,13 @@
 
 require_once "Model.php";
 
-class User extends Model
+class Users extends Model
 {
     public function register(
-        $password,
         $full_name,
         $email,
-        $phone
+        $phone,
+        $password
     ) {
         try {
             $hashed_password = password_hash("$password", PASSWORD_DEFAULT);

@@ -1,6 +1,6 @@
 <?php
 $title = "Login";
-include "template/header.php";
+include "Template/Header.php";
 session_start();
 ?>
 
@@ -77,4 +77,4 @@ session_start();
     </div>
 </div>
 
-<?php include "template/footer.php"; ?>
+<?php include "Template/Footer.php"; ?>

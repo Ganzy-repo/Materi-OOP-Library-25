@@ -1,6 +1,6 @@
 <?php
 $title = "Home";
-include "template/header.php" ?>
+include "Template/Header.php" ?>
 
 <div class="container mt-5 shadow p-3">
     <div class="d-flex justify-content-between">
@@ -35,4 +35,4 @@ include "template/header.php" ?>
             </div>
         </div>
     </div>
-    <?php require 'template/footer.php';
+    <?php require 'Template/Footer.php';

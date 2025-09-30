@@ -4,7 +4,7 @@ require_once "Model.php";
 
 class Category extends Model
 {
-    private $id, $category_name, $table_name = "categoty";
+    private $id, $category_name, $table_name = "category";
 
     public function getData()
     {

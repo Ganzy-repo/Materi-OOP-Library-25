@@ -3,7 +3,7 @@
 class Model
 {
     private string $host = "localhost";
-    private string $db_name = "library_oop";
+    private string $db_name = "library";
     private string $username = "root";
     private string $password = "";
 

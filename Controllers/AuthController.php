@@ -1,11 +1,11 @@
 <?php 
 
 require_once("Controller.php");
-require_once("model/User.php");
+require_once("Models/Users.php");
 
 class AuthController extends Controller{
     static function index() {
-        return self::view("view/auth.php");
+        return self::view("Views/Auth.php");
     }
     
     static function store() {
@@ -21,12 +21,12 @@ class AuthController extends Controller{
             return header("Location: http://localhost:8000/auth");
         }
 
-        $user = new User();
+        $user = new Users();
         $user->register(
-            $_REQUEST["password"],
             $_REQUEST["full_name"],
             $_REQUEST["email"],
-            $_REQUEST["phone"]
+            $_REQUEST["phone"],
+            $_REQUEST["password"]
         );
 
         echo "METHOD INI AKAN MENJALANKAN FUNCTION POST";
