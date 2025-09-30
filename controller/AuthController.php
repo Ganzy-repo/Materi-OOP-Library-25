@@ -1,6 +1,7 @@
 <?php 
 
 require_once("Controller.php");
+require_once("model/User.php");
 
 class AuthController extends Controller{
     static function index() {
@@ -19,6 +20,15 @@ class AuthController extends Controller{
             $_SESSION['ERROR'] = "all field must be filled";
             return header("Location: http://localhost:8000/auth");
         }
+
+        $user = new User();
+        $user->register(
+            $_REQUEST["password"],
+            $_REQUEST["full_name"],
+            $_REQUEST["email"],
+            $_REQUEST["phone"]
+        );
+
         echo "METHOD INI AKAN MENJALANKAN FUNCTION POST";
     }
 }

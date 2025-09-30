@@ -7,11 +7,20 @@ session_start();
 <div class="container m-5">
     <div class="d-flex justify-content-center">
         <div class="card p-3 shadow-lg" style="width: 18rem;">
-            
+
             <!-- CEK INPUT VALIDATION -->
             <?php if (isset($_SESSION["ERROR"])) : ?>
                 <div class="alert alert-danger" role="alert">
                     <?= $_SESSION["ERROR"] ?>
+                </div>
+            <?php
+                session_unset();
+            endif; ?>
+
+            <!-- REGISTER SUCCESS -->
+            <?php if (isset($_SESSION["SUCCESS"])) : ?>
+                <div class="alert alert-success" role="success">
+                    <?= $_SESSION["SUCCESS"] ?>
                 </div>
             <?php
                 session_unset();
