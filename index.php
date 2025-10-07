@@ -15,7 +15,7 @@ if ($server == "/auth") {
     if($method == "GET") {
         return AuthController::index();
     }
-        return AuthController::store();
+        return AuthController::auth();
 }
 
 if ($server == "/book") {

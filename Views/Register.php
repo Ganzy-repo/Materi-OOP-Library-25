@@ -30,13 +30,23 @@ session_start();
 
                     <form method="post" action="/auth">
                         <div class="mb-3">
+                            <label for="full_name" class="form-label">Full Name</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="full_name"
+                                name="full_name"
+                                placeholder="Enter your full name"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input
                                 type="email"
                                 class="form-control"
                                 id="email"
                                 name="email"
-                                value="<?= isset($_SESSION['email']) ? $_SESSION['email'] : "" ?> "
                                 placeholder="Enter your email"
                                 required>
                         </div>
@@ -52,6 +62,17 @@ session_start();
                                 required>
                         </div>
 
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input
+                                type="tel"
+                                class="form-control"
+                                id="phone"
+                                name="phone"
+                                placeholder="Enter your phone number"
+                                required>
+                        </div>
+
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary rounded-pill">
                                 Register now
@@ -59,7 +80,7 @@ session_start();
                         </div>
 
                         <p class="text-center mt-3 mb-0">
-                            Already have an account?
+                            Already have an account? 
                             <a href="login.php" class="text-decoration-none">Login here</a>
                         </p>
                     </form>
