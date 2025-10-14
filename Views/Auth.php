@@ -1,7 +1,6 @@
 <?php
 $title = "Auth";
 include "Template/Header.php";
-session_start();
 ?>
 
 <div class="container my-5">

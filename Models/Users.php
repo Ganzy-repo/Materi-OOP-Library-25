@@ -4,48 +4,71 @@ require_once "Model.php";
 
 class Users extends Model
 {
-    private $id, $full_name, $email, $phone, $role_name;
+    private $id, $full_name, $email, $password, $phone, $role;
 
-
-    public function login(
-        $email,
-        $password
-    ) {
-        $user = "SELECT users.id, full_name, email, phone, role_name FROM users JOIN user_role ON user_role.user_id=users.id JOIN roles ON user_role.role_id=roles.id WHERE users.email='$email'";
-
+    public function login($email, $password)
+    {
+        $user = "SELECT users.id, 
+                full_name, email, phone,
+                password,
+                role_name as role
+                FROM users
+                JOIN user_role
+                ON user_role.user_id=users.id
+                JOIN roles
+                ON user_role.role_id=roles.id
+                WHERE users.email='$email'";
         $connect = $this->connect();
         $query = $connect->query($user);
 
         $data = $query->fetchAll(PDO::FETCH_CLASS, 'Users');
+        session_start();
 
         if (count($data) == 0) {
-            session_start();
             $_SESSION['email'] = $email;
-            $_SESSION['ERROR'] = "Register failed";
-            header('Location: /auth');
-            return;
+            $_SESSION['ERROR'] = "Email not registered!";
+            return header('Location: /auth');
         }
 
-        echo count($data);
+        if (!password_verify($password, $data[0]->password)) {
+            $_SESSION['ERROR'] = "Wrong password!";
+            $_SESSION['email'] = $email;
+            return header('Location: /auth');
+        }
+
+        $_SESSION["is_login"] = true;
+        $_SESSION["id"] = $data[0]->id;
+        $_SESSION["full_name"] = $data[0]->full_name;
+        $_SESSION["email"] = $data[0]->email;
+        $_SESSION["role"] = $data[0]->role;
+        $_SESSION["phone"] = $data[0]->phone;
+
+        return header('Location: /dashboard');
     }
 
     public function register(
+        $password,
         $full_name,
-        $email,
         $phone,
-        $password
+        $email,
+        $role
     ) {
         try {
             $hashed_password = password_hash("$password", PASSWORD_DEFAULT);
             $query = $this->connect();
-            $data = "INSERT INTO users (full_name, email, password, phone) 
-            VALUES ('$full_name', '$email', '$hashed_password', '$phone')";
+            $data = "INSERT INTO users(full_name, email, password, phone) 
+            VALUES('$full_name', '$email', '$hashed_password', '$phone')";
 
             $query->exec($data);
 
+            $dataRole = "INSERT INTO user_role(user_id, role_id) VALUES (LAST_INSERT_ID(), $role)";
+
+            $query->exec($dataRole);
+
             session_start();
-            $_SESSION['SUCCESS'] = "Register Success!";
-            header('Location: /auth');
+            $_SESSION['success'] = "Create Member Success!";
+
+            header('Location: /create-member');
         } catch (\Throwable $th) {
             throw $th;
         }
