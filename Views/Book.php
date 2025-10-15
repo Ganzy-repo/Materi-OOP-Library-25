@@ -12,7 +12,6 @@ include "Template/Header.php";
         <?php endif; ?>
     </div>
     
-    <!-- Search dan Filter -->
     <div class="row">
         <div class="col-12 col-md-4">
             <div class="input-group input-group-sm mb-3">
@@ -27,7 +26,7 @@ include "Template/Header.php";
             <div class="input-group input-group-sm mb-3">
                 <select class="form-control">
                     <option value="">-- Choose Category --</option>
-                    <?php foreach ($data['categories'] as $cat) : ?>
+                    <?php foreach ($data['category'] as $cat) : ?>
                         <option value="<?= $cat['id'] ?>">
                             <?= $cat['category_name'] ?>
                         </option>
@@ -42,7 +41,6 @@ include "Template/Header.php";
         </div>
     </div>
 
-    <!-- Tabel Daftar Buku -->
     <?php if (empty($data['books'])): ?>
         <div class="alert alert-info">Tidak ada data buku.</div>
     <?php else: ?>
@@ -55,6 +53,7 @@ include "Template/Header.php";
                     <th>Tahun</th>
                     <th>Kategori</th>
                     <th>Qty</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -66,6 +65,11 @@ include "Template/Header.php";
                     <td><?= $book['year'] ?></td>
                     <td><?= $book['category_name'] ?></td>
                     <td><?= $book['qty'] ?></td>
+                    <td>
+                        <a href="/edit-book?id=<?= $book['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="/delete-book?id=<?= $book['id'] ?>" class="btn btn-danger btn-sm" 
+                           onclick="return confirm('Yakin hapus buku ini?')">Delete</a>
+                    </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
