@@ -21,8 +21,11 @@ class Users extends Model
         $connect = $this->connect();
         $query = $connect->query($user);
 
-        $data = $query->fetchAll(PDO::FETCH_CLASS, 'Users');
+        
+        $data = $query->fetchAll(PDO::FETCH_CLASS, 'users');
         session_start();
+        // var_dump($data);
+        // die;
 
         if (count($data) == 0) {
             $_SESSION['email'] = $email;
@@ -59,7 +62,7 @@ class Users extends Model
             $data = "INSERT INTO users(full_name, email, password, phone) 
             VALUES('$full_name', '$email', '$hashed_password', '$phone')";
 
-            $query->exec($data);
+            $query->exec($data);    
 
             $dataRole = "INSERT INTO user_role(user_id, role_id) VALUES (LAST_INSERT_ID(), $role)";
 

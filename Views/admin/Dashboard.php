@@ -1,12 +1,12 @@
 <?php
 $title = "DASHBOARD";
-require_once "Views/Template/Header.php";
+require_once "Template/Header.php";
 ?>
 
 <div class="container rounded shadow mt-4 p-4 text-center">
     <h2>Dashboard Page</h2>
     <h1>WELCOME, <?= $data["full_name"] ?>!</h1>
-    <h1>ROLE, <?= $data["role"] ?></h1>
+    <h1>ROLE, <?= $data["role_name"] ?></h1>
     <div class="row">
         <div class="col-lg-6 col-md-6 col-12">
             <a href="/create-book">
@@ -25,4 +25,4 @@ require_once "Views/Template/Header.php";
     </div>
 </div>
 
-<?php require_once "Views/Template/Footer.php" ?>
+<?php require_once "Template/Footer.php" ?>

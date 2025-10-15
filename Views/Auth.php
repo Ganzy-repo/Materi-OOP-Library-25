@@ -9,7 +9,7 @@ include "Template/Header.php";
             <div class="card shadow-lg border-0 rounded-4">
                 <div class="card-body p-4">
 
-                    <h3 class="text-center mb-4">Register</h3>
+                    <h3 class="text-center mb-4">Login</h3>
 
                     <!-- ERROR ALERT -->
                     <?php if (isset($_SESSION["ERROR"])) : ?>
@@ -53,13 +53,13 @@ include "Template/Header.php";
 
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary rounded-pill">
-                                Register now
+                                Login
                             </button>
                         </div>
 
                         <p class="text-center mt-3 mb-0">
-                            Already have an account?
-                            <a href="login.php" class="text-decoration-none">Login here</a>
+                            Doesn't have an Account?
+                            <a href="http://localhost:8000/create-member" class="text-decoration-none">Register here</a>
                         </p>
                     </form>
 

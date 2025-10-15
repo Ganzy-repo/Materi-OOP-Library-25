@@ -81,8 +81,8 @@ class AuthController extends Controller
     static public function destroy()
     {
         session_start();
-        
+        session_unset();
         session_destroy();
-
+        return header("Location: http://localhost:8000/auth");
     }
 }

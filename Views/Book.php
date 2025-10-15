@@ -1,6 +1,7 @@
 <?php
 $title = "Home";
-include "Template/Header.php" ?>
+include "Template/Header.php";
+?>
 
 <div class="container mt-5 shadow p-3">
     <div class="d-flex justify-content-between">
@@ -10,6 +11,8 @@ include "Template/Header.php" ?>
             <a href="/logout">Logout</a>
         <?php endif; ?>
     </div>
+    
+    <!-- Search dan Filter -->
     <div class="row">
         <div class="col-12 col-md-4">
             <div class="input-group input-group-sm mb-3">
@@ -24,9 +27,9 @@ include "Template/Header.php" ?>
             <div class="input-group input-group-sm mb-3">
                 <select class="form-control">
                     <option value="">-- Choose Category --</option>
-                    <?php foreach ($data as $book) : ?>
-                        <option value="<?= $book['id'] ?>">
-                            <?= $book['category_name'] ?>
+                    <?php foreach ($data['categories'] as $cat) : ?>
+                        <option value="<?= $cat['id'] ?>">
+                            <?= $cat['category_name'] ?>
                         </option>
                     <?php endforeach ?>
                 </select>
@@ -38,4 +41,36 @@ include "Template/Header.php" ?>
             </div>
         </div>
     </div>
-    <?php require 'Template/Footer.php';
+
+    <!-- Tabel Daftar Buku -->
+    <?php if (empty($data['books'])): ?>
+        <div class="alert alert-info">Tidak ada data buku.</div>
+    <?php else: ?>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Judul</th>
+                    <th>Penulis</th>
+                    <th>Tahun</th>
+                    <th>Kategori</th>
+                    <th>Qty</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($data['books'] as $index => $book): ?>
+                <tr>
+                    <td><?= $index + 1 ?></td>
+                    <td><?= $book['title'] ?></td>
+                    <td><?= $book['author'] ?></td>
+                    <td><?= $book['year'] ?></td>
+                    <td><?= $book['category_name'] ?></td>
+                    <td><?= $book['qty'] ?></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</div>
+
+<?php require_once "Template/Footer.php"; ?>

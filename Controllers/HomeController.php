@@ -18,7 +18,7 @@ class HomeController extends Controller
         $full_name = $_SESSION["full_name"] ?? NULL;
         $email = $_SESSION["email"] ?? NULL;
         $phone = $_SESSION["phone"] ?? NULL;
-        $role_name = $_SESSION["role_name"] ?? NULL;
+        $role_name = $_SESSION["role"] ?? NULL;
 
         if (
             isset($datalogin) &&
@@ -26,21 +26,19 @@ class HomeController extends Controller
             isset($full_name) &&
             isset($email) &&
             isset($phone) &&
-            isset($role)
+            isset($role_name)
         ) {
             $full_name = $_SESSION['full_name'];
-            $role_name = $_SESSION['role_name'];
 
+            if ($role_name === 'admin') {
+                return self::view("Views/Admin/Dashboard.php", [
+                    'full_name' => $full_name,
+                    'role_name' => $role_name
+                ]);
+            }
 
-            return self::view(
-                "Views/Admin/Dashboard.php",
-                ['full_name' => $full_name, 'role_name' => $role]
-            );
+            return header("Location: http://loaclhost:8000/book");
         }
-
-
-        header(
-            "Location: http://localhost:8000/auth"
-        );
+        header("Location: http://localhost:8000/auth");
     }
 }
